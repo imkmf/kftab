@@ -1,0 +1,24 @@
+{
+  "manifest_version": 2,
+
+  "name": "KFTab",
+  "description": "A better Chrome tab experience",
+  "version": "0.0.1",
+
+  "permissions": [
+    "tabs"
+  ],
+
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+
+  "background": {
+    "scripts": ["js/background.js"]
+  },
+
+  "icons": { "128": "icon.png" },
+
+  "browser_action": {
+    "default_icon": "popup.png",
+    "default_popup": "kftab.html"
+  }
+}

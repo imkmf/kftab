@@ -1,0 +1,20 @@
+html {
+  width: 400px;
+  height: auto;
+}
+
+div.tab {
+  padding: 10px;
+}
+
+div.tab:hover {
+  background: #eee;
+}
+
+div.tab:hover a {
+  font-weight: bold;
+}
+
+li {
+  list-style-type: none;
+}

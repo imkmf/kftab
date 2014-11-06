@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+  <head>
+    <title>KFTab</title>
+    <link rel="stylesheet" type="text/css" href="css/pure.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+  </head>
+  <body>
+    <script src="js/libs/jquery-1.10.2.js"></script>
+    <script src="js/libs/handlebars-v1.3.0.js"></script>
+    <script src="js/libs/ember-1.8.1.js"></script>
+    <script src="js/libs/fuse.js"></script>
+    <script src="js/app.js"></script>
+
+    <script type="text/x-handlebars" id="tabs">
+      <div class="pure-g">
+        <div class="pure-u-1-1">
+          <form class="pure-form">
+            <div class="pure-u-1">
+              {{focus-input class="pure-input-1" value=search}}
+            </div>
+          </form>
+          {{#each contentToShow}}
+            <div class="tab">
+              <a {{action 'switchTab' this}}>
+                {{title}} - {{url}}
+              </a>
+            </div>
+          {{/each}}
+          </ul>
+        </div>
+      </div>
+    </script>
+  </body>
+</html>
+
