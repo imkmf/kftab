@@ -9,10 +9,11 @@
     <script src="js/libs/jquery-1.10.2.js"></script>
     <script src="js/libs/handlebars-v1.3.0.js"></script>
     <script src="js/libs/ember-1.8.1.js"></script>
+    <script src="js/libs/ember-shortcuts.js"></script>
     <script src="js/libs/fuse.js"></script>
     <script src="js/app.js"></script>
 
-    <script type="text/x-handlebars" id="tabs">
+    <script type="text/x-handlebars" data-template-name="tabs">
       <div class="pure-g">
         <div class="pure-u-1-1">
           <form class="pure-form">
@@ -21,8 +22,8 @@
             </div>
           </form>
           {{#each contentToShow}}
-            <div class="tab">
-              <a {{action 'switchTab' this}}>
+            <div {{bind-attr class="active :tab"}}>
+              <a {{bind-attr class="active"}} {{action 'switchTab' this}}>
                 {{title}} - {{url}}
               </a>
             </div>
