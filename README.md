@@ -7,6 +7,8 @@ KFTab is a Chrome extension that implements live tab filtering and selection. It
 
 ![tabs](http://i.imgur.com/YEpjdZP.png)
 
+[download](https://github.com/imkmf/kftab/releases)
+
 Configuration
 ---
 
