@@ -7,6 +7,14 @@ div.tab {
   padding: 10px;
 }
 
+div.tab.active {
+  background: #eee;
+}
+
+div.tab a.active {
+  font-weight: bold;
+}
+
 div.tab:hover {
   background: #eee;
 }

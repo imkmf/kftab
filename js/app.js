@@ -27,6 +27,24 @@ App.TabsRoute = Ember.Route.extend({
       Ember.Logger.log(objects);
       return objects;
     });
+  },
+});
+
+App.TabsView = Ember.View.extend({
+  templateName: 'tabs',
+
+  keyDown: function(e) {
+    var direction = e.keyCode === 38 ? -1 : e.keyCode === 40 ? 1 : 0; // up or down
+    var enter = e.keyCode === 13; // enter
+
+    if (enter) {
+      this.get('controller').send('switchTab');
+    }
+
+    if (direction) {
+      this.get('controller').send('changeSelection', { direction: direction });
+      e.preventDefault();
+    }
   }
 });
 
@@ -36,13 +54,33 @@ App.FocusInputComponent = Ember.TextField.extend({
   }.on('didInsertElement')
 });
 
+App.TabController = Ember.ObjectController.extend({
+  active: false,
+  templateName: 'tab',
+});
+
 App.TabsController = Ember.ArrayController.extend({
+  currentTab: -1,
+  itemController: 'tab',
   search: '',
   searching: false,
 
   setResults: function() {
     this.set('contentToShow', this.get('content'));
   }.observes('content').on('init'),
+
+  updateCurrentTab: function() {
+    var content = this.get('content');
+    var currentTab = this.get('currentTab');
+
+    content.forEach(function(tab) {
+      if (tab == content[currentTab]) {
+        tab.set('active', true);
+      } else {
+        tab.set('active', false);
+      }
+    });
+  }.observes('currentTab'),
 
   updateSearch: function() {
     var search = this.get('search');
@@ -64,8 +102,27 @@ App.TabsController = Ember.ArrayController.extend({
   }.observes('search'),
 
   actions: {
+    changeSelection: function(offset) {
+      tab = this.get('currentTab');
+      if (offset.direction == 1) {
+        if (-1 <= tab && tab < this.get('content').length - 1) {
+          this.set('currentTab', tab + 1);
+        }
+      } else if (offset.direction == -1) {
+        if (0 < tab) {
+          this.set('currentTab', tab - 1);
+        }
+      }
+    },
+
     switchTab: function(tab) {
-      window.tabs.update(tab.id, { selected: true });
+      if (tab === undefined) {
+        tab = this.get('content')[this.get('currentTab')];
+        window.tabs.update(tab.id, { selected: true });
+      } else {
+        window.tabs.update(tab.id, { selected: true });
+      }
+      window.tabs.update({ active: true });
     }
   }
 });
