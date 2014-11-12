@@ -1,7 +1,7 @@
 kftab
 ===
 
-![preview](http://i.imgur.com/0dmTgDg.png)
+![preview](http://i.imgur.com/5UKsg0k.png)
 
 KFTab is a Chrome extension that implements live tab filtering and selection. It's intended for usage when your tab bar looks like this:
 
